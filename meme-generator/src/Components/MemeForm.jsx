@@ -25,14 +25,30 @@ function MemeForm() {
     }));
   }
 
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      [name]: value,
+    }));
+  }
+
   return (
     <>
       <div className="memeform">
-        <input type="text" placeholder="Top Text" className="memeform--input" />
+        <input
+          type="text"
+          placeholder="Top Text"
+          className="memeform--input"
+          name="topText"
+          onChange={handleChange}
+        />
         <input
           type="text"
           placeholder="Bottom Text"
           className="memeform--input"
+          name="bottomText"
+          onChange={handleChange}
         />
         <input
           type="submit"
@@ -43,6 +59,8 @@ function MemeForm() {
       </div>
       <div className="meme">
         <img src={meme.randomImage} alt="memeimg" className="meme--image" />
+        <h2 className="meme--text top">{meme.topText}</h2>
+        <h2 className="meme--text bottom">{meme.bottomText}</h2>
       </div>
     </>
   );
